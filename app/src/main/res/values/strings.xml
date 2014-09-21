@@ -4,5 +4,19 @@
     <string name="app_name">CSDN</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_about">AboutActivity</string>
 
+    <!--about-->
+    <string name="about_update">软件更新</string>
+    <string name="about_feedback">反馈意见</string>
+
+    <string name="empty_toast">暂无数据</string>
+    <string name="new_one">已是最新版本</string>
+    <string name="toast_collect_ok">已收藏</string>
+    <string name="toast_collect_cancel">已取消收藏</string>
+    <string name="toast_init">数据初始化中</string>
+
+    <string name="exit_message">是否退出</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
 </resources>

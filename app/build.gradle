@@ -23,7 +23,7 @@ android {
 dependencies {
     compile project(":umeng")
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:19.+'
 
+    compile 'com.android.support:appcompat-v7:19.+'
     compile 'github.chenupt:common:1.0.0@aar'
 }

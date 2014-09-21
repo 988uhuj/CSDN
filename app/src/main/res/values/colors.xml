@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="txt_blue">#FF007CB0</color>
+    <color name="txt_gray">#FF575756</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="txt_orange">#FFEB6100</color>
+    <color name="bg_gray">#FFE3E3E7</color>
+    <color name="orange">#FFE84E0E</color>
+    <color name="transparent">#00000000</color>
+    <color name="bg">#FFF39200</color>
+    <color name="lightblue">#FF007AA2</color>
+    <color name="lightorange">#FFACBA00</color>
+    <color name="red">#FFFF0000</color>
+    <color name="transparentdarkgray">#CC292929</color>
+    <color name="transparentgray">#88666666</color>
+    <color name="transparent_white">#99FFFFFF</color>
+    <color name="transparent_white2">#BBFFFFFF</color>
+    <color name="transparent_light">#99888888</color>
+    <color name="yellow">#ff9933</color>
+    <color name="gray">#ff333333</color>
+    <color name="light_blue">#5CACEE</color>
+    <color name="light_gray">#87CEEB</color>
+    <color name="orange_red">#613030</color>
+    <color name="whiteGray">#ffC9CACB</color>
+    <color name="normal_gray">#838B83</color>
+    <color name="blue">#436EEE</color>
+    <color name="light_orange">#FFFCBA00</color>
+    <color name="coffee">#622f1b</color>
+    <color name="black2">#80000000</color>
+    <color name="click_color">#2b72d6</color>
+
+
+    <color name="buttom_top">#1e1e1e</color>
+    <color name="buttom_centre">#303030</color>
+    <color name="buttom_buttom">#000000</color>
+    <color name="tab_indicator">#c73616</color>
+
+
+    <color name="wangyibg">#f0f0f0</color>
+    <color name="wangyibg2">#f3f3f3</color>
+
+
+    <color name="lineColor">#d3d3d3</color>
+    <color name="bg_gray_Color">#dad9d7</color>
+
+    <color name="holo_blue">#33b5e5</color>
+    <color name="tab_color">#48c3b1</color>
+    <color name="tab_color_uncheck">#333333</color>
+
+    <color name="tab_color_1">#343456</color>
+    <color name="tab_color_2">#60325f</color>
+    <color name="tab_color_3">#5d395d</color>
+    <color name="tab_color_4">#511350</color>
+
+    <color name="background">#f4f4f4</color>
+    <color name="text_background">#eeeeee</color>
+</resources>
