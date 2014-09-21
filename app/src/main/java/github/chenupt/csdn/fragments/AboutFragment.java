@@ -1,9 +1,5 @@
 package github.chenupt.csdn.fragments;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -13,75 +9,52 @@ import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import github.chenupt.csdn.R;
 import github.chenupt.csdn.base.BaseFragment;
 
 
 /**
  * Created by chenupt@gmail.com on 2014/7/7.
- * Description : TODO
+ * Description : 关于界面
  */
-
+@EFragment(R.layout.fragment_about)
 public class AboutFragment extends BaseFragment {
 
-    private Button feedBackBtn;
-    private Button updateBtn;
+    @ViewById(R.id.feed_btn)
+    Button feedBackBtn;
+    @ViewById(R.id.update_btn)
+    Button updateBtn;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_about, null);
+
+    @AfterViews
+    void afterViews(){
+
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Click(R.id.feed_btn)
+    void feedClick(){
+        FeedbackAgent agent = new FeedbackAgent(getActivity());
+        agent.startFeedbackActivity();
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        findViewById();
-        initData();
-        initView();
-
-        action();
-    }
-
-    private void findViewById(){
-        feedBackBtn = (Button) getView().findViewById(R.id.feed_btn);
-        updateBtn = (Button) getView().findViewById(R.id.update_btn);
-    }
-
-    private void initData(){
-    }
-
-    private void initView(){
-        feedBackBtn.setOnClickListener(new View.OnClickListener() {
+    @Click(R.id.update_btn)
+    void updateClick(){
+        UmengUpdateAgent.forceUpdate(getActivity());
+        UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
             @Override
-            public void onClick(View view) {
-                FeedbackAgent agent = new FeedbackAgent(getActivity());
-                agent.startFeedbackActivity();
-            }
-        });
-        updateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UmengUpdateAgent.forceUpdate(getActivity());
-                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
-                    @Override
-                    public void onUpdateReturned(int i, UpdateResponse updateResponse) {
-                        if (i == UpdateStatus.No) {
-                            Toast.makeText(getActivity(), getActivity().getText(R.string.new_one), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            public void onUpdateReturned(int i, UpdateResponse updateResponse) {
+                if (i == UpdateStatus.No) {
+                    Toast.makeText(getActivity(), getActivity().getText(R.string.new_one), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private void action(){
-    }
 
 
 

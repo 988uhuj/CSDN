@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import github.chenupt.csdn.activities.AboutActivity_;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -30,7 +32,11 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        }else if(id == R.id.action_about){
+            AboutActivity_.intent(this).start();
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
