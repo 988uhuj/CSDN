@@ -5,7 +5,6 @@
     tools:context="github.chenupt.csdn.activities.AboutActivity">
 
     <fragment
-        android:id="@+id/friendsMainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         class="github.chenupt.csdn.fragments.AboutFragment_" />

@@ -30,6 +30,8 @@ dependencies {
 
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
+
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }
 
 apt {
