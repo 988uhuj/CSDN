@@ -9,6 +9,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import github.chenupt.common.view.loadlistview.LoadListView;
 import github.chenupt.csdn.R;
 import github.chenupt.csdn.base.BaseFragment;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
@@ -22,10 +23,13 @@ import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 @EFragment(R.layout.fragment_news)
 public class NewsListFragment extends BaseFragment {
 
-    public static final String TAG = "NewsFragment";
+    public static final String TAG = "NewsListFragment";
 
     @ViewById(R.id.ptr_layout)
     PullToRefreshLayout pullToRefreshLayout;
+    @ViewById(R.id.list_view)
+    LoadListView loadListView;
+
     int i = 0;
 
     @Override
@@ -42,6 +46,13 @@ public class NewsListFragment extends BaseFragment {
                 .allChildrenArePullable()
                 .listener(onRefreshListener)
                 .setup(pullToRefreshLayout);
+
+        loadListView.setOnLoadListener(new LoadListView.OnLoadListener() {
+            @Override
+            public void onLoad() {
+                // TODO
+            }
+        });
     }
 
     private OnRefreshListener onRefreshListener = new OnRefreshListener() {
@@ -52,7 +63,7 @@ public class NewsListFragment extends BaseFragment {
 
     };
 
-    @UiThread(delay = 1000)
+    @UiThread(delay = 3000)
     void delayNetGetComment(){
         pullToRefreshLayout.setRefreshComplete();
     }

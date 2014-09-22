@@ -4,17 +4,26 @@
 
     <application
         android:allowBackup="true"
+        android:name=".App_"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.IndexActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MainActivity_"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".activities.SplashActivity_"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".activities.AboutActivity_"
