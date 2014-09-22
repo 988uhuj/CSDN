@@ -9,20 +9,22 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.apache.http.Header;
 
 import java.util.List;
 
+import github.chenupt.common.listhelper.SimpleItemEntity;
+import github.chenupt.common.listhelper.SimpleModelAdapter;
 import github.chenupt.common.view.loadlistview.LoadListView;
 import github.chenupt.csdn.R;
 import github.chenupt.csdn.base.BaseFragment;
 import github.chenupt.csdn.dataservice.CommonDataService;
+import github.chenupt.csdn.dataservice.NewsListService;
 import github.chenupt.csdn.entity.NewsItem;
-import github.chenupt.csdn.utils.Page;
 import github.chenupt.csdn.net.HttpClient;
 import github.chenupt.csdn.utils.Constants;
+import github.chenupt.csdn.utils.Page;
 import github.chenupt.csdn.utils.URLUtil;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
@@ -46,6 +48,10 @@ public class NewsListFragment extends BaseFragment {
     CommonDataService commonDataService;
     @Bean
     Page page;
+    @Bean
+    NewsListService newsListService;
+
+    SimpleModelAdapter adapter;
 
     int i = 0;
     int newsType;
@@ -63,6 +69,9 @@ public class NewsListFragment extends BaseFragment {
         if (getArguments() != null) {
             newsType = getArguments().getInt("data");
         }
+
+        adapter = new SimpleModelAdapter(getActivity(), newsListService.getFactory());
+        loadListView.setAdapter(adapter);
 
         // Now setup the PullToRefreshLayout
         ActionBarPullToRefresh.from(getActivity())
@@ -104,15 +113,21 @@ public class NewsListFragment extends BaseFragment {
     }
 
     private void handleData(boolean isRefresh, String content) {
-        if (isRefresh) {
-
-        }
         List<NewsItem> dataList =  commonDataService.getNewsItemList(Constants.DEF_NEWS_TYPE.YEJIE, content);
         Log.d(TAG, "size" + dataList.size());
+        List<SimpleItemEntity> list = newsListService.getWrapperList(dataList);
+        if (isRefresh) {
+            page.resetPage();
+            adapter.clearList();
+        }
+        adapter.addList(list);
+        page.increasePage();
     }
 
     private void loadFinish() {
-        delayNetGetComment();
+        adapter.notifyDataSetChanged();
+        pullToRefreshLayout.setRefreshComplete();
+        loadListView.setLoadComplete();
     }
 
 
@@ -124,11 +139,6 @@ public class NewsListFragment extends BaseFragment {
 
     };
 
-    @UiThread(delay = 3000)
-    void delayNetGetComment(){
-        pullToRefreshLayout.setRefreshComplete();
-        loadListView.setLoadComplete();
-    }
 
     @Override
     public void onDetach() {
