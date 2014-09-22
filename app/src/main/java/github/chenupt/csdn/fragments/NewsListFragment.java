@@ -53,7 +53,18 @@ public class NewsListFragment extends BaseFragment {
                 // TODO
             }
         });
+
+        action();
     }
+
+    private void action() {
+        netGetData();
+    }
+
+    private void netGetData() {
+
+    }
+
 
     private OnRefreshListener onRefreshListener = new OnRefreshListener() {
         @Override
