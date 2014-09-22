@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="news_menu">
+        <item>移动</item>
+        <item>互联网</item>
+        <item>科技</item>
+        <item>美国</item>
+        <item>百家</item>
+    </string-array>
+</resources>
