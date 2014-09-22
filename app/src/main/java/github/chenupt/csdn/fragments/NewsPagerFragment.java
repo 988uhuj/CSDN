@@ -37,7 +37,7 @@ public class NewsPagerFragment extends BaseFragment{
     @AfterViews
     void afterViews(){
         ModelFactory modelFactory = new ModelFactory();
-        modelFactory.addCommonFragment(NewsFragment_.class, getListData(), Arrays.asList(newsMenuArray));
+        modelFactory.addCommonFragment(NewsListFragment_.class, getListData(), Arrays.asList(newsMenuArray));
         SimplePagerAdapter adapter = new SimplePagerAdapter(getFragmentManager(), modelFactory);
         viewPager.setAdapter(adapter);
 
