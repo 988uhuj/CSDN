@@ -55,4 +55,6 @@
 
     <color name="background">#f4f4f4</color>
     <color name="text_background">#eeeeee</color>
+    <color name="title_color">#000000</color>
+    <color name="content_color">#9e9e9e</color>
 </resources>
