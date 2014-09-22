@@ -70,6 +70,7 @@
     <orderEntry type="library" exported="" name="common-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="library-0.4.0" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.0.1" level="project" />
+    <orderEntry type="library" exported="" name="android-async-http-1.4.5" level="project" />
     <orderEntry type="module" module-name="umeng" exported="" />
   </component>
 </module>

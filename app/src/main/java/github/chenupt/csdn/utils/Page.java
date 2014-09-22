@@ -1,12 +1,15 @@
-package github.chenupt.csdn.entity;
+package github.chenupt.csdn.utils;
 
-public class CSDNPage {
+import org.androidannotations.annotations.EBean;
+
+@EBean
+public class Page {
 	public int page = 1;
 	public int contentMutiPages;
 	public boolean contentFirstPage = true;
 	
-	public void setPageStart(){
-		page = 2;
+	public void resetPage(){
+		page = 1;
 	}
 	public void setPage(int num){
 		page = num;
@@ -14,7 +17,7 @@ public class CSDNPage {
 	public String getCurrentPage(){
 		return page + "";
 	}
-	public  void addPage(){
+	public void increasePage(){
 		page ++;
 	}
 }

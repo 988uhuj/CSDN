@@ -1,5 +1,6 @@
 package github.chenupt.csdn.dataservice;
 
+import org.androidannotations.annotations.EBean;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,19 +21,20 @@ import github.chenupt.csdn.entity.NewsItem;
 import github.chenupt.csdn.utils.Constants;
 
 
+@EBean
 public class CommonDataService {
 	public static boolean contentFirstPage = true;
 	public static boolean contentLastPage = true;
 	public static boolean multiPages = false;
 	
-	public static void resetPages(){
+	public void resetPages(){
 		contentFirstPage = true;
 		contentLastPage = true;
 		multiPages = false;
 	}
 	
 
-	public static List<News> getContent(String url, String str){
+	public List<News> getContent(String url, String str){
 		List<News> list = new ArrayList<News>();
 
 		Document doc = Jsoup.parse(str);
@@ -169,9 +171,9 @@ public class CommonDataService {
 		return list;
 	}*/
 	
-	public static List<NewsItem> getNewsItemList(int newsType, String str){
+	public List<NewsItem> getNewsItemList(int newsType, String contentStr){
 		List<NewsItem> list = new ArrayList<NewsItem>();
-		Document doc = Jsoup.parse(str);
+		Document doc = Jsoup.parse(contentStr);
 		Elements newsList = doc.getElementsByClass("unit");
 		
 		for(Element newsItem : newsList){
@@ -200,7 +202,7 @@ public class CommonDataService {
 		}
 		return list;
 	}
-	public static List<Comment> getComment(String str){
+	public List<Comment> getComment(String str){
 		List<Comment> list = new ArrayList<Comment>();
 		try {
 			JSONObject jsonObject = new JSONObject(str);
@@ -258,7 +260,7 @@ public class CommonDataService {
 		}
 		return list;
 	}
-    public static String ToDBC(String input) {
+    public String ToDBC(String input) {
         char[] c = input.toCharArray();   
         for (int i = 0; i < c.length; i++) {   
             if (c[i] == 12288) {   
@@ -271,7 +273,7 @@ public class CommonDataService {
         return new String(c);   
     }  
     
-    public static String getDate(String str){
+    public String getDate(String str){
     	Date date = new Date(Long.parseLong(str));
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
     	return sdf.format(date);

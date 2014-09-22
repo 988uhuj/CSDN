@@ -17,6 +17,7 @@ import github.chenupt.csdn.R;
 import github.chenupt.csdn.adapter.ModelFactory;
 import github.chenupt.csdn.adapter.SimplePagerAdapter;
 import github.chenupt.csdn.base.BaseFragment;
+import github.chenupt.csdn.utils.Constants;
 
 /**
  * Created by chenupt@gmail.com on 2014/9/21.
@@ -47,12 +48,13 @@ public class NewsPagerFragment extends BaseFragment{
 //        tabs.setOnPageChangeListener(mPageChangeListener);
     }
 
-    private List<String> getListData(){
-        String testUrl = "";
-        List<String> list = new ArrayList<String>();
-        for (int i = 0; i < newsMenuArray.length; i++) {
-            list.add(testUrl);
-        }
+    private List<Integer> getListData(){
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(Constants.DEF_NEWS_TYPE.YANFA);
+        list.add(Constants.DEF_NEWS_TYPE.ZAZHI);
+        list.add(Constants.DEF_NEWS_TYPE.YUNJISUAN);
+        list.add(Constants.DEF_NEWS_TYPE.YIDONG);
+        list.add(Constants.DEF_NEWS_TYPE.YEJIE);
         return list;
     }
 }

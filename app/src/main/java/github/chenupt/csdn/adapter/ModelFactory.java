@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ModelFactory {
 
-    public final static String DATA = "DATA";
+    public final static String DATA = "data";
 
     private List<CharSequence> titleList;
     private List<Fragment> fragmentList;
