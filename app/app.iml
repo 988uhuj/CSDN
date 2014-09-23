@@ -69,6 +69,7 @@
     <orderEntry type="library" exported="" name="library-0.9.9" level="project" />
     <orderEntry type="library" exported="" name="jsoup-1.7.3" level="project" />
     <orderEntry type="library" exported="" name="common-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="swipe-back-lib-1.0" level="project" />
     <orderEntry type="library" exported="" name="library-0.4.0" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.2" level="project" />

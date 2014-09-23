@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
+import com.hannesdorfmann.swipeback.SwipeBack;
+
 import github.chenupt.csdn.R;
 
 
@@ -25,6 +27,8 @@ public class BaseActivity extends ActionBarActivity {
 	private OnSyncDataListener onSyncDataListener;
 	
 	private Intent intentReceived;
+
+    private boolean enableSwipeBack = true;
 
 	protected BroadcastReceiver syncDataReceiver = new BroadcastReceiver() {
 
@@ -66,6 +70,13 @@ public class BaseActivity extends ActionBarActivity {
 		registerReceiver(syncDataReceiver, intentFilter);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if(enableSwipeBack){
+            SwipeBack.attach(this)
+                    .setDrawOverlay(true)
+                    .setDividerEnabled(true)
+                    .setUpDefaultSwipeBackView();
+        }
 	}
 
 	@Override
@@ -115,5 +126,9 @@ public class BaseActivity extends ActionBarActivity {
         // http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+    }
+
+    public void setEnableSwipeBack(boolean enableSwipeBack) {
+        this.enableSwipeBack = enableSwipeBack;
     }
 }

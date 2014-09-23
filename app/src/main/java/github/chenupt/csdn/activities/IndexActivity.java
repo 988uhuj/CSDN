@@ -13,7 +13,8 @@ public class IndexActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SplashActivity_.intent(this).start();
+//        SplashActivity_.intent(this).start();
+        MainActivity_.intent(this).start();
         finish();
     }
 }

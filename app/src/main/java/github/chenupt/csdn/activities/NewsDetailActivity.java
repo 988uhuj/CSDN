@@ -65,6 +65,8 @@ public class NewsDetailActivity extends BaseActivity {
                 .listener(onRefreshListener)
                 .setup(pullToRefreshLayout);
 
+
+        loadListView.setEnableAutoLoad(false);
         loadListView.setOnLoadListener(new LoadListView.OnLoadListener() {
             @Override
             public void onLoad() {
@@ -72,6 +74,8 @@ public class NewsDetailActivity extends BaseActivity {
             }
         });
 
+        pullToRefreshLayout.setEnabled(false);
+        pullToRefreshLayout.setRefreshing(true);
         netGetData(true);
     }
 
@@ -117,5 +121,23 @@ public class NewsDetailActivity extends BaseActivity {
             netGetData(true);
         }
     };
+
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.detail, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        if(id == R.id.action_comment){
+//            AboutActivity_.intent(this).start();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
 
 }
