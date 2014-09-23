@@ -8,10 +8,10 @@ import java.util.List;
 import github.chenupt.common.listhelper.ItemEntityWrapper;
 import github.chenupt.common.listhelper.ModelFactory;
 import github.chenupt.common.listhelper.SimpleItemEntity;
-import github.chenupt.csdn.customitemview.NewsDetailContentItemView;
-import github.chenupt.csdn.customitemview.NewsDetailImageItemView;
-import github.chenupt.csdn.customitemview.NewsDetailSummaryItemView;
-import github.chenupt.csdn.customitemview.NewsDetailTitleItemView;
+import github.chenupt.csdn.customitemview.NewsDetailContentItemView_;
+import github.chenupt.csdn.customitemview.NewsDetailImageItemView_;
+import github.chenupt.csdn.customitemview.NewsDetailSummaryItemView_;
+import github.chenupt.csdn.customitemview.NewsDetailTitleItemView_;
 import github.chenupt.csdn.entity.NewsDetail;
 import github.chenupt.csdn.utils.Constants;
 
@@ -24,10 +24,10 @@ public class NewsDetailService {
 
     public ModelFactory getFactory(){
         ModelFactory modelFactory = new ModelFactory.Builder()
-                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.TITLE), NewsDetailTitleItemView.class)
-                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.CONTENT), NewsDetailContentItemView.class)
-                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.IMG), NewsDetailImageItemView.class)
-                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.SUMMARY), NewsDetailSummaryItemView.class)
+                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.TITLE), NewsDetailTitleItemView_.class)
+                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.CONTENT), NewsDetailContentItemView_.class)
+                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.IMG), NewsDetailImageItemView_.class)
+                .addModel(String.valueOf(Constants.DEF_NEWS_DETAIL_TYPE.SUMMARY), NewsDetailSummaryItemView_.class)
                 .build();
         return modelFactory;
     }

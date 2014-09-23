@@ -13,9 +13,11 @@
         <github.chenupt.common.view.loadlistview.LoadListView
             android:id="@+id/list_view"
             android:cacheColorHint="@null"
+            android:dividerHeight="0dp"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
 
     </uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>
 </LinearLayout>

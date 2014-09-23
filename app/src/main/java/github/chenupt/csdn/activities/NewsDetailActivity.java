@@ -71,9 +71,12 @@ public class NewsDetailActivity extends BaseActivity {
                 netGetData(false);
             }
         });
+
+        netGetData(true);
     }
 
     private void netGetData(final boolean isRefresh){
+        Log.d(TAG, "url:" + url);
         HttpClient.getUrl(url, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
@@ -92,7 +95,7 @@ public class NewsDetailActivity extends BaseActivity {
 
     private void handleData(boolean isRefresh, String result){
         List<NewsDetail> dataList =  commonDataService.getContent(url, result);
-        Log.d(TAG, "size" + dataList.size());
+        Log.d(TAG, "size:" + dataList.size());
         List<SimpleItemEntity> list = newsDetailService.getWrapperList(dataList);
         if (isRefresh) {
             page.resetPage();
@@ -103,7 +106,9 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
     private void loadFinish() {
-
+        adapter.notifyDataSetChanged();
+        pullToRefreshLayout.setRefreshComplete();
+        loadListView.setLoadComplete();
     }
 
     private OnRefreshListener onRefreshListener = new OnRefreshListener() {
