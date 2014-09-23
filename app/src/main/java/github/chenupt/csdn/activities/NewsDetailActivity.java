@@ -1,6 +1,5 @@
-package github.chenupt.csdn.fragments;
+package github.chenupt.csdn.activities;
 
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 
@@ -8,7 +7,8 @@ import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 import org.apache.http.Header;
 
@@ -18,26 +18,24 @@ import github.chenupt.common.listhelper.SimpleItemEntity;
 import github.chenupt.common.listhelper.SimpleModelAdapter;
 import github.chenupt.common.view.loadlistview.LoadListView;
 import github.chenupt.csdn.R;
-import github.chenupt.csdn.base.BaseFragment;
+import github.chenupt.csdn.base.BaseActivity;
 import github.chenupt.csdn.dataservice.CommonDataService;
-import github.chenupt.csdn.dataservice.NewsListService;
-import github.chenupt.csdn.entity.NewsItem;
+import github.chenupt.csdn.dataservice.NewsDetailService;
+import github.chenupt.csdn.entity.NewsDetail;
 import github.chenupt.csdn.net.HttpClient;
-import github.chenupt.csdn.utils.Constants;
 import github.chenupt.csdn.utils.Page;
-import github.chenupt.csdn.utils.URLUtil;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 /**
- * Created by chenupt@gmail.com on 2014/9/21.
- * Description 信息列表界面
+ * Created by chenupt@gmail.com on 2014/9/22.
+ * Description TODO
  */
-@EFragment(R.layout.fragment_news_list)
-public class NewsListFragment extends BaseFragment {
+@EActivity(R.layout.activity_news_detail)
+public class NewsDetailActivity extends BaseActivity {
 
-    public static final String TAG = "NewsListFragment";
+    public static final String TAG = "NewsDetailActivity";
 
     @ViewById(R.id.ptr_layout)
     PullToRefreshLayout pullToRefreshLayout;
@@ -45,36 +43,24 @@ public class NewsListFragment extends BaseFragment {
     LoadListView loadListView;
 
     @Bean
+    NewsDetailService newsDetailService;
+    @Bean
     CommonDataService commonDataService;
     @Bean
     Page page;
-    @Bean
-    NewsListService newsListService;
 
     SimpleModelAdapter adapter;
 
-    int i = 0;
-    int newsType;
-
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        i ++;
-        Log.d(TAG, "onAttach" + i);
-    }
+    @Extra
+    String url;
 
     @AfterViews
     void afterViews(){
-        if (getArguments() != null) {
-            newsType = getArguments().getInt("data");
-        }
-
-        adapter = new SimpleModelAdapter(getActivity(), newsListService.getFactory());
+        adapter = new SimpleModelAdapter(this, newsDetailService.getFactory());
         loadListView.setAdapter(adapter);
 
         // Now setup the PullToRefreshLayout
-        ActionBarPullToRefresh.from(getActivity())
+        ActionBarPullToRefresh.from(this)
                 .allChildrenArePullable()
                 .listener(onRefreshListener)
                 .setup(pullToRefreshLayout);
@@ -85,18 +71,10 @@ public class NewsListFragment extends BaseFragment {
                 netGetData(false);
             }
         });
-
-        action();
     }
 
-    private void action() {
-        netGetData(true);
-    }
-
-    private void netGetData(final boolean isRefresh) {
-        Log.d(TAG, URLUtil.getNewsListURL(newsType,isRefresh ? "1" : page.getCurrentPage()));
-        HttpClient.getUrl(URLUtil.getNewsListURL(newsType,
-                isRefresh ? "1" : page.getCurrentPage()), new TextHttpResponseHandler() {
+    private void netGetData(final boolean isRefresh){
+        HttpClient.getUrl(url, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Log.d(TAG, "result: " + responseString);
@@ -112,10 +90,10 @@ public class NewsListFragment extends BaseFragment {
         });
     }
 
-    private void handleData(boolean isRefresh, String content) {
-        List<NewsItem> dataList =  commonDataService.getNewsItemList(Constants.DEF_NEWS_TYPE.YEJIE, content);
+    private void handleData(boolean isRefresh, String result){
+        List<NewsDetail> dataList =  commonDataService.getContent(url, result);
         Log.d(TAG, "size" + dataList.size());
-        List<SimpleItemEntity> list = newsListService.getWrapperList(dataList);
+        List<SimpleItemEntity> list = newsDetailService.getWrapperList(dataList);
         if (isRefresh) {
             page.resetPage();
             adapter.clearList();
@@ -125,24 +103,14 @@ public class NewsListFragment extends BaseFragment {
     }
 
     private void loadFinish() {
-        adapter.notifyDataSetChanged();
-        pullToRefreshLayout.setRefreshComplete();
-        loadListView.setLoadComplete();
-    }
 
+    }
 
     private OnRefreshListener onRefreshListener = new OnRefreshListener() {
         @Override
         public void onRefreshStarted(View view) {
             netGetData(true);
         }
-
     };
 
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d(TAG, "onDetach");
-    }
 }

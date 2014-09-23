@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 import github.chenupt.csdn.entity.Comment;
-import github.chenupt.csdn.entity.News;
+import github.chenupt.csdn.entity.NewsDetail;
 import github.chenupt.csdn.entity.NewsItem;
 import github.chenupt.csdn.utils.Constants;
 
@@ -34,8 +34,8 @@ public class CommonDataService {
 	}
 	
 
-	public List<News> getContent(String url, String str){
-		List<News> list = new ArrayList<News>();
+	public List<NewsDetail> getContent(String url, String str){
+		List<NewsDetail> list = new ArrayList<NewsDetail>();
 
 		Document doc = Jsoup.parse(str);
 		Elements pages = doc.getElementsByClass("next");
@@ -61,14 +61,14 @@ public class CommonDataService {
 		
 		if(contentFirstPage){
 			Element title = detail.getElementsByClass("title").get(0);
-			News titleNews = new News();
-			titleNews.setState(Constants.DEF_NEWS_ITEM_TYPE.TITLE);
+			NewsDetail titleNews = new NewsDetail();
+			titleNews.setState(Constants.DEF_NEWS_DETAIL_TYPE.TITLE);
 			titleNews.setContent(ToDBC(title.text()));
 			list.add(titleNews);
 			
 			Element summary = detail.getElementsByClass("summary").get(0);
-			News summaryNews = new News();
-			summaryNews.setState(Constants.DEF_NEWS_ITEM_TYPE.SUMMARY);
+			NewsDetail summaryNews = new NewsDetail();
+			summaryNews.setState(Constants.DEF_NEWS_DETAIL_TYPE.SUMMARY);
 			summaryNews.setContent(ToDBC(summary.text()));
 			list.add(summaryNews);		
 		}
@@ -114,13 +114,14 @@ public class CommonDataService {
 				Elements imgs = c.getElementsByTag("img");
 				for (Element img : imgs) {
 					if(!img.attr("src").equals("")){
-						News imgNews = new News();
+						NewsDetail imgNews = new NewsDetail();
 						if(!img.parent().attr("href").equals("")){
-							imgNews.setImgLink(img.parent().attr("href"));
+//							imgNews.setImgLink(img.parent().attr("href"));
+                            imgNews.setContent(img.parent().attr("href"));
 							img.parent().remove();
 						}
-						imgNews.setContent(img.attr("src"));
-						imgNews.setState(Constants.DEF_NEWS_ITEM_TYPE.IMG);
+//						imgNews.setContent(img.attr("src"));
+						imgNews.setState(Constants.DEF_NEWS_DETAIL_TYPE.IMG);
 						list.add(imgNews);
 					}
 				}
@@ -128,19 +129,19 @@ public class CommonDataService {
 			c.select("img").remove();
 			
 			
-			News contentNews = new News();
-			contentNews.setState(Constants.DEF_NEWS_ITEM_TYPE.CONTENT);
+			NewsDetail contentNews = new NewsDetail();
+			contentNews.setState(Constants.DEF_NEWS_DETAIL_TYPE.CONTENT);
 			
 			
 			if (c.text().equals("")) {
 				continue;
 			} else if (c.children().size() == 1) {
-				if (c.child(0).tagName().equals("bold")
-						|| c.child(0).tagName().equals("span")) {
-					if (c.ownText().equals("")) {
-						contentNews.setState(Constants.DEF_NEWS_ITEM_TYPE.BOLD_TITLE);
-					}
-				}
+//				if (c.child(0).tagName().equals("bold")
+//						|| c.child(0).tagName().equals("span")) {
+//					if (c.ownText().equals("")) {
+//						contentNews.setState(Constants.DEF_NEWS_DETAIL_TYPE.BOLD_TITLE);
+//					}
+//				}
 			}
 			
 			contentNews.setContent(ToDBC(c.outerHtml()));

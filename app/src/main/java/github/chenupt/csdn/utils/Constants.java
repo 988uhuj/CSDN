@@ -2,7 +2,7 @@ package github.chenupt.csdn.utils;
 
 
 public class Constants {
-	public class DEF_NEWS_ITEM_TYPE{
+	public class DEF_NEWS_DETAIL_TYPE {
 		public static final int TITLE = 1;
 		public static final int SUMMARY = 2;
 		public static final int CONTENT = 3;

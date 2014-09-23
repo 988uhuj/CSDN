@@ -1,31 +1,17 @@
 package github.chenupt.csdn.entity;
 
 
-public class News {
-	private String title;
+public class NewsDetail {
 	private String content;
-	private String summary;
 	private String imgLink;
 	private String link;
 	private int state;
 	private String commentCount;
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getSummary() {
-		return summary;
-	}
-	public void setSummary(String summary) {
-		this.summary = summary;
 	}
 	public String getImgLink() {
 		return imgLink;

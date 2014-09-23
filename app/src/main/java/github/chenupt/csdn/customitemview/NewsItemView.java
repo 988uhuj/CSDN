@@ -8,11 +8,13 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
 import github.chenupt.common.listhelper.BaseItemModel;
 import github.chenupt.csdn.R;
+import github.chenupt.csdn.activities.NewsDetailActivity_;
 import github.chenupt.csdn.display.DisplayOption;
 import github.chenupt.csdn.entity.NewsItem;
 
@@ -51,5 +53,10 @@ public class NewsItemView extends BaseItemModel<NewsItem>{
         }else{
             imageView.setVisibility(View.GONE);
         }
+    }
+
+    @Click(R.id.container)
+    void containerClick(){
+        NewsDetailActivity_.intent(getContext()).url(model.getContent().getLink()).start();
     }
 }
