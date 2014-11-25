@@ -15,6 +15,7 @@ public class MainActivity extends BaseActivity {
 
     @AfterViews
     void afterViews(){
+        setEnableSwipeBack(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
